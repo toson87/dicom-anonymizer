@@ -132,7 +132,7 @@ export function DropZone({
             border: '1px solid #238636',
             borderRadius: 6,
             color: '#7ee787',
-            fontSize: 15,
+            fontSize: 13,
             letterSpacing: '0.02em',
           }}
         >
