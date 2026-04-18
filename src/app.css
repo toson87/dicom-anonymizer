@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-sidebar: #0d1117;
+  --bg-panel: #161b22;
+  --bg-surface: #1c2128;
+  --bg-viewer: #000000;
+  --border: #30363d;
+  --text-primary: #e6edf3;
+  --text-muted: #8b949e;
+  --text-dim: #484f58;
+  --accent: #1f6feb;
+  --accent-hover: #388bfd;
+  --phi-identity: #da3633;
+  --phi-date: #d29922;
+  --phi-uid: #bc8cff;
+  --phi-institution: #f0883e;
+  --phi-safe: #238636;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-sidebar);
+  color: var(--text-primary);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 5px;
+  border: 2px solid var(--bg-panel);
+}
+::-webkit-scrollbar-thumb:hover { background: #484f58; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: #30363d;
+  border-radius: 2px;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.stripe-identity { box-shadow: inset 3px 0 0 0 var(--phi-identity); }
+.stripe-date     { box-shadow: inset 3px 0 0 0 var(--phi-date); }
+.stripe-uid      { box-shadow: inset 3px 0 0 0 var(--phi-uid); }
+.stripe-institution { box-shadow: inset 3px 0 0 0 var(--phi-institution); }
+.stripe-device   { box-shadow: inset 3px 0 0 0 var(--phi-institution); }
+.stripe-description { box-shadow: inset 3px 0 0 0 var(--phi-date); }
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+.pulse-ring { animation: pulse-ring 2s ease-in-out infinite; }

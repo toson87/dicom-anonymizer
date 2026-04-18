@@ -1,0 +1,101 @@
+export interface TagInfo {
+  keyword: string
+  vr: string
+  name: string
+}
+
+// Subset of DICOM tag dictionary covering common tags
+// Full reference: https://dicom.nema.org/medical/dicom/current/output/chtml/part06/chapter_6.html
+const DICT: Record<string, TagInfo> = {
+  '00020000': { keyword: 'FileMetaInformationGroupLength', vr: 'UL', name: 'File Meta Information Group Length' },
+  '00020001': { keyword: 'FileMetaInformationVersion', vr: 'OB', name: 'File Meta Information Version' },
+  '00020002': { keyword: 'MediaStorageSOPClassUID', vr: 'UI', name: 'Media Storage SOP Class UID' },
+  '00020003': { keyword: 'MediaStorageSOPInstanceUID', vr: 'UI', name: 'Media Storage SOP Instance UID' },
+  '00020010': { keyword: 'TransferSyntaxUID', vr: 'UI', name: 'Transfer Syntax UID' },
+  '00020012': { keyword: 'ImplementationClassUID', vr: 'UI', name: 'Implementation Class UID' },
+  '00020013': { keyword: 'ImplementationVersionName', vr: 'SH', name: 'Implementation Version Name' },
+  '00080005': { keyword: 'SpecificCharacterSet', vr: 'CS', name: 'Specific Character Set' },
+  '00080008': { keyword: 'ImageType', vr: 'CS', name: 'Image Type' },
+  '00080012': { keyword: 'InstanceCreationDate', vr: 'DA', name: 'Instance Creation Date' },
+  '00080013': { keyword: 'InstanceCreationTime', vr: 'TM', name: 'Instance Creation Time' },
+  '00080014': { keyword: 'InstanceCreatorUID', vr: 'UI', name: 'Instance Creator UID' },
+  '00080016': { keyword: 'SOPClassUID', vr: 'UI', name: 'SOP Class UID' },
+  '00080018': { keyword: 'SOPInstanceUID', vr: 'UI', name: 'SOP Instance UID' },
+  '00080020': { keyword: 'StudyDate', vr: 'DA', name: 'Study Date' },
+  '00080021': { keyword: 'SeriesDate', vr: 'DA', name: 'Series Date' },
+  '00080022': { keyword: 'AcquisitionDate', vr: 'DA', name: 'Acquisition Date' },
+  '00080023': { keyword: 'ContentDate', vr: 'DA', name: 'Content Date' },
+  '00080030': { keyword: 'StudyTime', vr: 'TM', name: 'Study Time' },
+  '00080031': { keyword: 'SeriesTime', vr: 'TM', name: 'Series Time' },
+  '00080032': { keyword: 'AcquisitionTime', vr: 'TM', name: 'Acquisition Time' },
+  '00080033': { keyword: 'ContentTime', vr: 'TM', name: 'Content Time' },
+  '00080050': { keyword: 'AccessionNumber', vr: 'SH', name: 'Accession Number' },
+  '00080060': { keyword: 'Modality', vr: 'CS', name: 'Modality' },
+  '00080064': { keyword: 'ConversionType', vr: 'CS', name: 'Conversion Type' },
+  '00080070': { keyword: 'Manufacturer', vr: 'LO', name: 'Manufacturer' },
+  '00080080': { keyword: 'InstitutionName', vr: 'LO', name: 'Institution Name' },
+  '00080081': { keyword: 'InstitutionAddress', vr: 'ST', name: 'Institution Address' },
+  '00080090': { keyword: 'ReferringPhysicianName', vr: 'PN', name: 'Referring Physician Name' },
+  '00081010': { keyword: 'StationName', vr: 'SH', name: 'Station Name' },
+  '00081030': { keyword: 'StudyDescription', vr: 'LO', name: 'Study Description' },
+  '0008103E': { keyword: 'SeriesDescription', vr: 'LO', name: 'Series Description' },
+  '00081040': { keyword: 'InstitutionalDepartmentName', vr: 'LO', name: 'Institutional Department Name' },
+  '00081048': { keyword: 'PhysiciansOfRecord', vr: 'PN', name: 'Physician(s) of Record' },
+  '00081050': { keyword: 'PerformingPhysicianName', vr: 'PN', name: 'Performing Physician Name' },
+  '00081060': { keyword: 'NameOfPhysiciansReadingStudy', vr: 'PN', name: 'Name of Physician(s) Reading Study' },
+  '00081070': { keyword: 'OperatorsName', vr: 'PN', name: "Operator's Name" },
+  '00081090': { keyword: 'ManufacturerModelName', vr: 'LO', name: "Manufacturer's Model Name" },
+  '00100010': { keyword: 'PatientName', vr: 'PN', name: "Patient's Name" },
+  '00100020': { keyword: 'PatientID', vr: 'LO', name: 'Patient ID' },
+  '00100021': { keyword: 'IssuerOfPatientID', vr: 'LO', name: 'Issuer of Patient ID' },
+  '00100030': { keyword: 'PatientBirthDate', vr: 'DA', name: "Patient's Birth Date" },
+  '00100040': { keyword: 'PatientSex', vr: 'CS', name: "Patient's Sex" },
+  '00101010': { keyword: 'PatientAge', vr: 'AS', name: "Patient's Age" },
+  '00101020': { keyword: 'PatientSize', vr: 'DS', name: "Patient's Size" },
+  '00101030': { keyword: 'PatientWeight', vr: 'DS', name: "Patient's Weight" },
+  '00101040': { keyword: 'PatientAddress', vr: 'LO', name: "Patient's Address" },
+  '00180010': { keyword: 'ContrastBolusAgent', vr: 'LO', name: 'Contrast/Bolus Agent' },
+  '00180015': { keyword: 'BodyPartExamined', vr: 'CS', name: 'Body Part Examined' },
+  '00180050': { keyword: 'SliceThickness', vr: 'DS', name: 'Slice Thickness' },
+  '00180080': { keyword: 'RepetitionTime', vr: 'DS', name: 'Repetition Time' },
+  '00180081': { keyword: 'EchoTime', vr: 'DS', name: 'Echo Time' },
+  '00180088': { keyword: 'SpacingBetweenSlices', vr: 'DS', name: 'Spacing Between Slices' },
+  '00181000': { keyword: 'DeviceSerialNumber', vr: 'LO', name: 'Device Serial Number' },
+  '00181020': { keyword: 'SoftwareVersions', vr: 'LO', name: 'Software Version(s)' },
+  '00181030': { keyword: 'ProtocolName', vr: 'LO', name: 'Protocol Name' },
+  '00181314': { keyword: 'FlipAngle', vr: 'DS', name: 'Flip Angle' },
+  '00200010': { keyword: 'StudyID', vr: 'SH', name: 'Study ID' },
+  '00200011': { keyword: 'SeriesNumber', vr: 'IS', name: 'Series Number' },
+  '00200012': { keyword: 'AcquisitionNumber', vr: 'IS', name: 'Acquisition Number' },
+  '00200013': { keyword: 'InstanceNumber', vr: 'IS', name: 'Instance Number' },
+  '00200032': { keyword: 'ImagePositionPatient', vr: 'DS', name: 'Image Position (Patient)' },
+  '00200037': { keyword: 'ImageOrientationPatient', vr: 'DS', name: 'Image Orientation (Patient)' },
+  '00200052': { keyword: 'FrameOfReferenceUID', vr: 'UI', name: 'Frame of Reference UID' },
+  '0020000D': { keyword: 'StudyInstanceUID', vr: 'UI', name: 'Study Instance UID' },
+  '0020000E': { keyword: 'SeriesInstanceUID', vr: 'UI', name: 'Series Instance UID' },
+  '00280002': { keyword: 'SamplesPerPixel', vr: 'US', name: 'Samples per Pixel' },
+  '00280004': { keyword: 'PhotometricInterpretation', vr: 'CS', name: 'Photometric Interpretation' },
+  '00280008': { keyword: 'NumberOfFrames', vr: 'IS', name: 'Number of Frames' },
+  '00280010': { keyword: 'Rows', vr: 'US', name: 'Rows' },
+  '00280011': { keyword: 'Columns', vr: 'US', name: 'Columns' },
+  '00280030': { keyword: 'PixelSpacing', vr: 'DS', name: 'Pixel Spacing' },
+  '00280100': { keyword: 'BitsAllocated', vr: 'US', name: 'Bits Allocated' },
+  '00280101': { keyword: 'BitsStored', vr: 'US', name: 'Bits Stored' },
+  '00280102': { keyword: 'HighBit', vr: 'US', name: 'High Bit' },
+  '00280103': { keyword: 'PixelRepresentation', vr: 'US', name: 'Pixel Representation' },
+  '00281050': { keyword: 'WindowCenter', vr: 'DS', name: 'Window Center' },
+  '00281051': { keyword: 'WindowWidth', vr: 'DS', name: 'Window Width' },
+  '00281052': { keyword: 'RescaleIntercept', vr: 'DS', name: 'Rescale Intercept' },
+  '00281053': { keyword: 'RescaleSlope', vr: 'DS', name: 'Rescale Slope' },
+  '00281054': { keyword: 'RescaleType', vr: 'LO', name: 'Rescale Type' },
+  '7FE00010': { keyword: 'PixelData', vr: 'OW', name: 'Pixel Data' },
+}
+
+export function lookupTag(tag: string): TagInfo {
+  const upper = tag.toUpperCase()
+  return DICT[upper] ?? { keyword: 'Unknown', vr: 'UN', name: 'Unknown Tag' }
+}
+
+export function toParserTag(tag: string): string {
+  return 'x' + tag.toLowerCase()
+}
