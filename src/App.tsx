@@ -193,25 +193,16 @@ export default function App() {
           )
         }
         center={
-          hasFiles ? (
-            <ImageViewer
-              instance={workspace.activeInstance}
-              series={workspace.activeSeries}
-              activeIndex={workspace.state.activeInstanceIndex}
-              onActiveIndexChange={workspace.setActiveInstance}
-              viewport={viewport.viewport}
-              onViewportChange={patch => viewport.setViewport(v => ({ ...v, ...patch }))}
-              onResetWindowLevel={handleResetWindowLevel}
-              onFullReset={handleFullReset}
-            />
-          ) : (
-            <DropZone
-              isDragging={isDragging}
-              inputRef={inputRef}
-              onInputChange={handleInputChange}
-              onBrowseClick={openFolderPicker}
-            />
-          )
+          <ImageViewer
+            instance={workspace.activeInstance}
+            series={workspace.activeSeries}
+            activeIndex={workspace.state.activeInstanceIndex}
+            onActiveIndexChange={workspace.setActiveInstance}
+            viewport={viewport.viewport}
+            onViewportChange={patch => viewport.setViewport(v => ({ ...v, ...patch }))}
+            onResetWindowLevel={handleResetWindowLevel}
+            onFullReset={handleFullReset}
+          />
         }
         right={
           <TagInspector
@@ -246,6 +237,15 @@ export default function App() {
           />
         }
       />
+      {!hasFiles && (
+        <DropZone
+          isDragging={isDragging}
+          inputRef={inputRef}
+          onInputChange={handleInputChange}
+          onBrowseClick={openFolderPicker}
+          fullscreen
+        />
+      )}
       {hasFiles && isDragging && (
         <DropZone
           isDragging
