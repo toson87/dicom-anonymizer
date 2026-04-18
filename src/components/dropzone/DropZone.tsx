@@ -136,7 +136,7 @@ export function DropZone({
             letterSpacing: '0.02em',
           }}
         >
-          <strong>100% CLIENT-SIDE</strong> &nbsp;·&nbsp; PHI NEVER LEAVES YOUR BROWSER
+          100% CLIENT-SIDE &nbsp;·&nbsp; FILES NEVER LEAVE YOUR BROWSER
         </div>
       </div>
     </div>

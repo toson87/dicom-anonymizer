@@ -47,7 +47,6 @@ export function TopBar({ studyCount, instanceCount }: TopBarProps) {
         <span>{studyCount} studies</span>
         <span>·</span>
         <span>{instanceCount} instances</span>
-        <span style={{ color: '#7ee787' }}>● Offline</span>
       </div>
     </header>
   )
