@@ -1,6 +1,6 @@
 # DICOM Anonymizer
 
-## 🌐 [Live Demo → https://toson87.github.io/dicom-anonymizer/](https://toson87.github.io/dicom-anonymizer/)
+## 🌐 [Use it now → https://toson87.github.io/dicom-anonymizer/](https://toson87.github.io/dicom-anonymizer/)
 
 A browser-based tool for anonymizing DICOM medical imaging files. All processing happens entirely client-side — PHI never leaves your machine.
 
